@@ -26,8 +26,8 @@ function image () {
     music.playTone(262, music.beat(BeatFraction.Whole))
     basic.clearScreen()
 }
-function Juega (x: number) {
-    if (x == 1) {
+function Juega (x2: number) {
+    if (x2 == 1) {
         basic.showLeds(`
             # . . . #
             . # . # .
@@ -36,7 +36,7 @@ function Juega (x: number) {
             # # . # #
             `)
     }
-    if (x == 2) {
+    if (x2 == 2) {
         basic.showLeds(`
             . . . . .
             . # # # .
@@ -45,7 +45,7 @@ function Juega (x: number) {
             . . . . .
             `)
     }
-    if (x == 3) {
+    if (x2 == 3) {
         basic.showLeds(`
             # # # # #
             # . . . #
@@ -54,8 +54,8 @@ function Juega (x: number) {
             # # # # #
             `)
     }
-    TobbieII.dance(10)
     music.startMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once)
+    TobbieII.dance(5)
     basic.pause(2000)
 }
 basic.forever(function () {
@@ -66,14 +66,12 @@ basic.forever(function () {
         basic.pause(2900)
         TobbieII.stopturn()
         Juega(x)
-    } else {
-        if (TobbieII.RBlock(700)) {
-            image()
-            x = 1 + randint(0, 2)
-            TobbieII.leftward()
-            basic.pause(2900)
-            TobbieII.stopturn()
-            Juega(x)
-        }
+    } else if (TobbieII.RBlock(700)) {
+        image()
+        x = 1 + randint(0, 2)
+        TobbieII.leftward()
+        basic.pause(2900)
+        TobbieII.stopturn()
+        Juega(x)
     }
 })
